@@ -22,6 +22,10 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (username === "" || password === "") {
+      alert("Sorry, there are no front end validations, but at least put something!")
+      return
+    }
     setIsLoading(true);
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: 'POST',
@@ -30,12 +34,16 @@ export const LoginPage = () => {
       },
       body: JSON.stringify({username, password})
     })
-    const data = await response.json();
-    localStorage.setItem('token', data.access_token);
-    localStorage.setItem('username', username);
-    setIsLoading(false);
-    console.log('Logged in!', data)
-    navigate('/')
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('username', username);
+      setIsLoading(false);
+      navigate('/')
+    } else {
+      alert("Error logging in!")
+      setIsLoading(false);
+    }
   }
 
   return (
