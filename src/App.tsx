@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {LoginPage} from "./pages/LoginPage";
 import {HomePage} from "./pages/HomePage";
@@ -6,6 +6,9 @@ import {RegisterPage} from "./pages/RegisterPage";
 import NavBar from "./components/NavBar";
 
 function App() {
+  useEffect(() => {
+    document.title = "Securitize Wallet"
+  }, [])
   return (
     <div style={{ height: "100%" }}>
       <BrowserRouter>
