@@ -65,6 +65,18 @@ const styles = {
     display: "flex",
     justifyContent: "flex-end",
     marginTop: "1rem",
+  },
+  iconButton: {
+    width: '1rem',
+    height: '1rem',
+    alignSelf: "flex-end",
+    margin: '2rem -1.5rem 0 0',
+    backgroundColor: 'transparent',
+  },
+  editButtonsContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginTop: "0.5rem",
   }
 }
 
@@ -147,9 +159,17 @@ export const Wallet = ({wallet, onDelete, onUpdate}: any) => {
       <Grid2 xs={12} style={styles.paperContainer}>
         <Paper variant={"outlined"} style={styles.paper}>
           {editing ? <Grid2 xs={12} style={{display: "flex", flexDirection: "column"}}>
-            <Grid2 xs={12} style={styles.editingIconsContainer}>
-              <Close style={styles.closeIcon} onClick={handleDiscardChanges}/>
-              <Check style={styles.checkIcon} onClick={handleSaveChanges}/>
+            <Grid2 xs={12} style={styles.editButtonsContainer}>
+              <Grid2 xs={1} >
+                <Button onClick={handleDiscardChanges} >
+                  <Close style={styles.closeIcon} />
+                </Button>
+              </Grid2>
+              <Grid2 xs={1} >
+                <Button onClick={handleSaveChanges} >
+                  <Check style={styles.checkIcon} />
+                </Button>
+              </Grid2>
             </Grid2>
             <Grid2>
               <TextField value={selectedCurrency === 'USD' ? usdRatio : eurRatio} onChange={(e) => {
@@ -161,7 +181,9 @@ export const Wallet = ({wallet, onDelete, onUpdate}: any) => {
               }}/>
             </Grid2>
           </Grid2> : <Grid2 xs={12} style={{display: "flex", flexDirection: "column"}}>
-            <EditRounded style={styles.editIcon} onClick={() => setEditing(true)}/>
+            <Button onClick={() => setEditing(true)} style={styles.iconButton}>
+              <EditRounded style={styles.editIcon} />
+            </Button>
             {isUpdating ? <CircularProgress/> : (selectedCurrency === 'USD' ?
                 <Typography variant={"h5"} style={styles.ratio}>{wallet.usd}</Typography> :
                 <Typography variant={"h5"} style={styles.ratio}>{wallet.eur}</Typography>
