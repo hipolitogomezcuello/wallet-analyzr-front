@@ -20,15 +20,18 @@ const styles = {
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const username = localStorage.getItem('username');
 
   return (
     <Box sx={{flexGrow: 1}}>
       <AppBar position="static">
         <Toolbar style={styles.toolbar}>
           <img src={securitizeLogo} alt={"Securitize"} style={styles.logo} onClick={() => navigate('/')}/>
-          <Typography variant={"h6"} >
-            Welcome, {localStorage.getItem("username")}!
-          </Typography>
+          { username &&
+            <Typography variant={"h6"} >
+              Welcome, {username}!
+            </Typography>
+          }
           <div>
             <Button variant={"outlined"} color={"primary"} style={styles.button}
                     onClick={() => navigate('/login')}>Login</Button>
