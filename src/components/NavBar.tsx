@@ -1,4 +1,4 @@
-import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import securitizeLogo from "../assets/securitize-logo.svg";
 import {useNavigate} from "react-router-dom";
 
@@ -15,6 +15,7 @@ const styles = {
   logo: {
     maxHeight: '2rem',
     color: 'white',
+    cursor: 'pointer'
   }
 }
 
